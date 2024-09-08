@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>EMI CALCULATOR</title>
+    <link rel="stylesheet" href="assets/bootstrap-5.3.2-dist/css/bootstrap.css">
+    <style>
+        body {
+            background-image: url("images/emi.png");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #0f5132;
+            color: #ffffff;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+
+        }
+        button:hover {
+            background-color: #0f5132c7;
+        }
+        #disp {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #606060;
+        }
+
+
+    </style>
+    <script>
+        function CalculateLoan(){
+            var amount=parseFloat(document.getElementById("loan_amount").value)
+            var interest_rate_value =parseFloat(document.getElementById("interest_rate").value)
+            var months =parseInt(document.getElementById("months").value)
+            var interest = (amount * (interest_rate_value * 0.01))/months;
+            var emi = ((amount/months) + interest);
+            var total_payment= parseInt(amount+interest)
+            document.getElementById("disp").innerHTML="EMI : ₹" + emi.toFixed(2) + (" PER MONTH")
+            document.getElementById("disp1").innerHTML=" TOTAL PAYMENT: ₹" + Math.round(total_payment)
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1 style="color: #005ca9; text-align: center;">EMI CALCULATOR</h1>
+    <form>
+        <label >LOAN AMOUNT IN RUPEES</label><br>
+        <input id="loan_amount" type="number" placeholder="Loan Amount"><br>
+        <label>INTEREST RATE % </label><br>
+        <input id="interest_rate" type="number" placeholder="Interest Rate"><br>
+        <label> TENURE (IN MONTHS) </label><br>
+        <input id="months" type="number" placeholder="Months"><br>
+        <button onclick="CalculateLoan()" type="button">CALCULATE</button>
+        <h3 id="disp">
+        </h3>
+        <h6 id="disp1">
+
+        </h6>
+    </form>
+</div>
+</body>
+</html>
